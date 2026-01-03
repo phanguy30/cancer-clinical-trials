@@ -151,6 +151,7 @@ for df, name in [
 ]:
     assert_fk(df, "nct_id", trial_ids, name)
 
+#Checking arm_interventions foreign key integrity
 if arm_interventions is not None:
     # schema
     required = {"nct_id", "arm_label", "intervention_name"}
@@ -188,6 +189,8 @@ assert_null_rate_below(trials, "study_type", 0.05, "trials")
 assert_null_rate_below(trials, "brief_title", 0.10, "trials")
 
 
+
+#checking date logic: completion_date >= start_date
 t = trials.copy()
 t["start_date"] = pd.to_datetime(t.get("start_date"), errors="coerce")
 t["completion_date"] = pd.to_datetime(t.get("completion_date"), errors="coerce")
