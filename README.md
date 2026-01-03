@@ -1,3 +1,4 @@
+```mermaid
 erDiagram
   TRIALS {
     string nct_id PK
